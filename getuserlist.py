@@ -17,12 +17,13 @@ def get_user_list():
     return all_users_dict
 
 
-def make_uid_users_dict(users_dict: dict):
+def make_uid_users_dict():
     """
         Создаёт словарь с ключом uidNumber значением sAMAccountName
     :param users_dict:
     :return:
     """
+    users_dict = get_user_list()
     result_dict = {}
     for value in users_dict.values():
         result_dict[value['uidNumber']] = value['sAMAccountName']
@@ -41,7 +42,7 @@ def check_uid(uid, user_dict):
 
 
 def main():
-    uid_users_dict = make_uid_users_dict(get_user_list())
+    uid_users_dict = make_uid_users_dict()
     print(uid_users_dict)
     print(check_uid('1234', uid_users_dict))
 
