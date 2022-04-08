@@ -21,8 +21,8 @@ def main():
     print(smb_status_result)
 
     # Получаем список пользователей
-    uid_users_dict = make_uid_users_dict()
-    print(uid_users_dict)
+    # uid_users_dict = make_uid_users_dict()
+    # print(uid_users_dict)
 
 
 if __name__ == '__main__':
