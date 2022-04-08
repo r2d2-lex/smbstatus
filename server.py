@@ -1,3 +1,5 @@
+from getuserlist import make_uid_users_dict, check_uid
+
 from flask import Flask, render_template
 from smbstat import smb_status
 from collections import namedtuple
@@ -5,11 +7,12 @@ import re
 
 app = Flask(__name__)
 SKIP_LINES = 4
+UID = 1
 
 
-def parse_status(smb_data):
-    status_record = []
-    Records = namedtuple('RECORDS', 'Pid Uid DenyMode Access R_W Op_lock SharePath Name Time')
+def parse_status(smb_data, uid_users_dict):
+    # 'Pid Uid DenyMode Access R_W Op_lock SharePath Name Time'
+    status_records = []
     count = 0
     for line in smb_data.splitlines():
         count += 1
@@ -19,24 +22,37 @@ def parse_status(smb_data):
         if not parsed_line:
             continue
 
-    return status_record
+        try:
+            username = check_uid(parsed_line[UID], uid_users_dict)
+        except IndexError:
+            continue
+
+        parsed_line.append(username)
+        print(f'Parsed string: {parsed_line}')
+        status_records.append(parsed_line)
+
+    return status_records
 
 
 def parse_line(line):
+    """
+        Создаём список из параметров
+    :param line:
+    :return:
+    """
     split_line = line.split('/', 1)
     try:
         part1 = split_line[0]
         part2 = split_line[1]
     except IndexError:
-        return False
+        return ''
 
     part1_list = parse_part1(part1)
     part2_list = parse_part2(part2)
     if not part2_list:
-        return False
+        return ''
 
     list_of_string = part1_list + part2_list
-    print(f'Parsed string: {list_of_string}')
     return list_of_string
 
 
@@ -109,8 +125,11 @@ def index():
 
 
 def main():
+    uid_users_dict = make_uid_users_dict()
+    print(uid_users_dict)
+
     smb_data = smb_status()
-    smb_lines = parse_status(smb_data)
+    smb_lines = parse_status(smb_data, uid_users_dict)
 
 
 if __name__ == '__main__':
