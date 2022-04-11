@@ -16,3 +16,6 @@ SSH_STATUS_COMMAND = 'sudo /root/supercommand.sh'
 SSH_USER = 'user'
 SSH_PASSWORD = 'password'
 SRC_HOST = '127.0.0.1'
+
+LOGIN_NAME_INDEX = 9
+PATH_NAME_INDEX = 7

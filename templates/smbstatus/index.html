@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--% include 'search.html' %-->
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>Name</td>
+            <td>PID</td>
+            <td>Share</td>
+            <td>Filename</td>
+            <td>Date</td>
+        </tr>
+    {% for line in smb_lines %}
+        <tr>
+            <td>{{ line[9] }}</td>
+            <td>{{ line[0] }}</td>
+            <td>{{ line[6] }}</td>
+            <td>{{ line[7] }}</td>
+            <td>{{ line[8] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
