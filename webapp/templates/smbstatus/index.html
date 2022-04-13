@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!--% include 'search.html' %-->
+{% include 'search_form.html' %}
 
     <table class="table table-striped table-bordered">
-        <tr>
-            <td>Name</td>
-            <td>PID</td>
-            <td>Share</td>
-            <td>Filename</td>
-            <td>Date</td>
+        <tr class="table-info">
+            <th scope="col">Name</th>
+            <th scope="col">PID</th>
+            <th scope="col">Share</th>
+            <th scope="col">Filename</th>
+            <th scope="col">Date</th>
         </tr>
     {% for line in smb_lines %}
         <tr>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="flexRadioSorting" id="flexRadioFilename" checked>
+              <label class="form-check-label" for="flexRadioFilename">
+                Filename
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="flexRadioSorting" id="flexRadioUsername">
+              <label class="form-check-label" for="flexRadioUsername">
+                Username
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="flexRadioSorting" id="flexRadioShare">
+              <label class="form-check-label" for="flexRadioShare">
+                Share
+              </label>
+            </div>
+        </p>
+
+    <p><input type=submit value=Sort></p>
+    </form>
+    </div>
+
+    <div class="col">
+      ...
+    </div>
+  </div>
+</div>

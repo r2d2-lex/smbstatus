@@ -1,7 +1,7 @@
-from getuserlist import get_user_list, make_uid_users_dict, check_uid
-from remote_command import prepare_remote_command, start_shell_command
+from webapp.getuserlist import check_uid
+from webapp.remote_command import prepare_remote_command, start_shell_command
 import re
-import config
+import webapp.config as config
 
 SKIP_LINES = 4
 UID = 1

@@ -19,3 +19,7 @@ SRC_HOST = '127.0.0.1'
 
 LOGIN_NAME_INDEX = 9
 PATH_NAME_INDEX = 7
+
+PAGE_TITLE = 'Samba Status'
+SECRET_KEY = 'super secret key'
+

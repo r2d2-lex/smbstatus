@@ -1,4 +1,5 @@
-config.py
+webapp/config.py
 venv/*
 .idea/*
 __pycache__/*
+webapp/__pycache__/*
