@@ -62,6 +62,18 @@ def sort_records(records, key):
     return result
 
 
+def search_records(records, key, search_word):
+    result = []
+    for record in records:
+        try:
+            i = record[key].find(search_word)
+            if i != -1:
+                result.append(record)
+        except (IndexError, KeyError):
+            continue
+    return result
+
+
 def search_element(status_records, element, element_value) -> list:
     search_results = []
     for record in status_records:
