@@ -32,6 +32,7 @@ def parse_status(uid_users_dict):
     """
     smb_data = smb_status()
 
+    list_of_user_names = set()
     status_records = []
     count = 0
     for line in smb_data.splitlines():
@@ -48,10 +49,12 @@ def parse_status(uid_users_dict):
             continue
 
         parsed_line.append(username)
+        list_of_user_names.add(username)
         # print(f'Parsed string: {parsed_line}')
         status_records.append(parsed_line)
 
-    return status_records
+    list_of_user_names = sorted(list_of_user_names)
+    return status_records, list_of_user_names
 
 
 def sort_records(records, key):
