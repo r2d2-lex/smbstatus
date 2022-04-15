@@ -13,10 +13,10 @@
         </tr>
     {% for line in smb_lines %}
         <tr>
-            <td><a href="/search?username={{ line[9] }}">{{ line[9] }}</a></td>
+            <td><a href="/?username={{ line[9] }}">{{ line[9] }}</a></td>
             <td>{{ line[0] }}</td>
             <td>{{ line[6] }}</td>
-            <td><a href="/search?filename={{ line[7] }}">{{ line[7] }}</a></td>
+            <td><a href="/?filename={{ line[7] }}">{{ line[7] }}</a></td>
             <td>{{ line[8] }}</td>
         </tr>
     {% endfor %}

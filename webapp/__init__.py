@@ -19,16 +19,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
 
-    @app.route('/')
-    def index():
-        search_form = SearchForm()
-        uid_users_dict = make_uid_users_dict()
-        smb_lines, list_of_user_names = parse_status(uid_users_dict)
-        smb_lines = sort_records(smb_lines, app.config['PATH_NAME_INDEX'])
-        return render_template('smbstatus/index.html', page_title=app.config['PAGE_TITLE'], smb_lines=smb_lines,
-                               form=search_form, records_count=len(smb_lines), user_names=list_of_user_names)
-
-    @app.route('/search', methods=['GET', 'POST'])
+    @app.route('/', methods=['GET', 'POST'])
     def sort():
         user_name = ''
         file_name = ''
@@ -41,10 +32,6 @@ def create_app():
         if search_form.validate_on_submit():
             user_name = search_form.username.data
             file_name = search_form.filename.data
-            print('UserName: ', user_name)
-            print('FileName: ', file_name)
-
-            print('Sort type: ', search_form.sort_type.data)
             sort_type_data = search_form.sort_type.data
             if sort_type_data == 'sort_filename':
                 sort_type = app.config['PATH_NAME_INDEX']
@@ -55,7 +42,7 @@ def create_app():
 
         uid_users_dict = make_uid_users_dict()
         smb_lines, list_of_user_names = parse_status(uid_users_dict)
-        if len(user_name) > 3:
+        if len(user_name) > 0:
             smb_lines = search_records(smb_lines, app.config['LOGIN_NAME_INDEX'], user_name)
         if len(file_name) > 0:
             smb_lines = search_records(smb_lines, app.config['PATH_NAME_INDEX'], file_name)
