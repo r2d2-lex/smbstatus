@@ -1,7 +1,7 @@
 <div class="card border-primary mt-5">
 
     <div class="card-header bg-light">
-        <h5 class="card-title">Укажите тип поиска и сортировки</h5>
+        <h5 class="card-title">Параметры поиска и сортировки</h5>
     </div>
 
     <form action="/search" method="post">
@@ -21,44 +21,23 @@
                 </div>
 
                 <div class="col col-md-4">
-                        <!--  Без name не работает!!!! -->
-                        <input type="text" class="form-control" id="username" name="username" aria-describedby="TextUsernameHelp">
-                        <div id="TextUsernameHelp" class="form-text">Введите имя пользователя.</div>
-
-                        <input type="text" class="form-control" id="filename" name="filename" aria-describedby="TextFilenameHelp">
-                        <div id="TextFilenameHelp" class="form-text">Введите имя файла или папки.</div>
+                        {{ form.username.label }}
+                        {{ form.username() }}
+                        {{ form.filename.label }}
+                        {{ form.filename() }}
                 </div>
 
                 <div class="col col-md-4">
-                    <div class="form-check">
-                      <!--  Без value не работает!!!! -->
-                      <input class="form-check-input" type="radio" name="sort_type" id="sort_filename" value="sort_filename" checked>
-                      <label class="form-check-label" for="sort_filename">
-                        Сортировка по имени файла/папки
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="sort_type" id="sort_username" value="sort_username">
-                      <label class="form-check-label" for="sort_username">
-                        Сортировка по имени пользователя
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="sort_type" id="sort_share" value="sort_share">
-                      <label class="form-check-label" for="sort_share">
-                        Сортировка по имени ресурса
-                      </label>
-                    </div>
+                    {{ form.sort_type }}
                 </div>
 
             </div>
-
-
         </div>
     </div>
 
     <div class="card-footer">
         <div class="form-check form-check-inline">
+            <a href="#" class="btn btn-primary" onclick="cleanFields(); return false;">Сбросить</a>
             <input class="btn btn-primary" type=submit value="Поиск/Сортировка">
         </div>
     </div>
