@@ -1,13 +1,13 @@
 [Unit]
-Description=uWSGI instance to serve smbstat
+Description=uWSGI instance to serve smbstatus
 After=network.target
 
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/smbstat
-Environment="PATH=/var/www/smbstat/venv/bin"
-ExecStart=/var/www/smbstat/venv/bin/uwsgi --ini smbstat.ini
+WorkingDirectory=/var/www/smbstatus
+Environment="PATH=/var/www/smbstatus/venv/bin"
+ExecStart=/var/www/smbstatus/venv/bin/uwsgi --ini smbstatus.ini
 
 [Install]
 WantedBy=multi-user.target

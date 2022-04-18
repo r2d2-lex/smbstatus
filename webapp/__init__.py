@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 from webapp.forms import SearchForm
 from webapp.getuserlist import make_uid_users_dict
-from webapp.smbstat import smb_status, parse_status, sort_records, search_records
+from webapp.smbstatus import smb_status, parse_status, sort_records, search_records
 
 
 def create_app():
