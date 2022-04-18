@@ -5,9 +5,9 @@ After=network.target
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/home/user/smbstat
-Environment="PATH=/home/user/smbstat/venv/bin"
-ExecStart=/home/user/smbstat/venv/bin/uwsgi --ini smbstat.ini
+WorkingDirectory=/var/www/smbstat
+Environment="PATH=/var/www/smbstat/venv/bin"
+ExecStart=/var/www/smbstat/venv/bin/uwsgi --ini smbstat.ini
 
 [Install]
 WantedBy=multi-user.target
