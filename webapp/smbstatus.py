@@ -44,7 +44,11 @@ def parse_status(uid_users_dict):
             continue
 
         try:
-            username = check_uid(parsed_line[UID], uid_users_dict)
+            # Пропуск отрытых ресурсов
+            if parsed_line[config.PATH_NAME_INDEX] == '.':
+                continue
+
+            username = check_uid(parsed_line[config.USER_ID_INDEX], uid_users_dict)
         except IndexError:
             continue
 
