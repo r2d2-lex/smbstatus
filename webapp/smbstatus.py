@@ -1,5 +1,5 @@
-from webapp.getuserlist import check_uid
-from webapp.remote_command import prepare_remote_command, start_shell_command
+from webapp.utils.getuserlist import check_uid
+from webapp.utils.remote_command import prepare_remote_command, start_shell_command
 import re
 import webapp.config as config
 

@@ -1,5 +1,5 @@
 import webapp.config as config
-from webapp.LdapModify import LdapModify
+from webapp.utils.LdapModify import LdapModify
 
 
 def get_user_list():
