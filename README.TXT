@@ -35,3 +35,7 @@ cp /%root%/smbstatus/nginx/smbstatus /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/smbstatus /etc/nginx/sites-enabled/
 nginx -t
 systemctl restart nginx
+
+
+EXAMPLE RUN from command prompt:
+uwsgi --socket 127.0.0.1:5000 --protocol=http -w webapp.uwsgi:app_run
