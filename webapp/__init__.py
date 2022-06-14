@@ -12,11 +12,14 @@ def create_app():
     def check_get_args(req):
         user_name = req.args.get("username")
         file_name = req.args.get("filename")
+        user_id = req.args.get("userid")
         if not isinstance(user_name, str):
             user_name = ''
         if not isinstance(file_name, str):
             file_name = ''
-        return user_name, file_name
+        if not isinstance(user_id, str):
+            user_id = ''
+        return user_name, file_name, user_id
 
     @app.route('/', methods=['GET', 'POST'])
     def index():
@@ -25,7 +28,7 @@ def create_app():
         sort_type = app.config['PATH_NAME_INDEX']
 
         if request.method == "GET":
-            user_name, file_name = check_get_args(request)
+            user_name, file_name, user_id = check_get_args(request)
 
         search_form = SearchForm()
         if search_form.validate_on_submit():

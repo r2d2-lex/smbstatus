@@ -12,10 +12,13 @@ USER_FILTER = '(&(objectCategory=person)(sAMAccountName={}))'
 SSH_CMD = '/usr/bin/ssh'
 SSH_OPTIONS = '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 SSH_PASS = '/usr/bin/sshpass'
-SSH_STATUS_COMMAND = 'sudo /root/supercommand.sh'
+SAMBA_STATUS_COMMAND = 'sudo /usr/local/bin/smbstat.sh'
 SSH_USER = 'user'
 SSH_PASSWORD = 'password'
 SRC_HOST = '127.0.0.1'
+
+KILL_USER_COMMAND = 'sudo /usr/local/bin/killuser.sh'
+KILL_USER_PASSWORD = 'SUPER_PASSWORD'
 
 LOGIN_NAME_INDEX = 9
 PATH_NAME_INDEX = 7
