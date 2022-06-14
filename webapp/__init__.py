@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
+from flask import jsonify
 
 from webapp.forms import SearchForm
 from webapp.utils.getuserlist import make_uid_users_dict
 from webapp.smbstatus import smb_status, parse_status, sort_records, search_records
+from webapp.user_session import kill_user_session
 
 
 def create_app():
@@ -12,14 +14,29 @@ def create_app():
     def check_get_args(req):
         user_name = req.args.get("username")
         file_name = req.args.get("filename")
-        user_id = req.args.get("userid")
         if not isinstance(user_name, str):
             user_name = ''
         if not isinstance(file_name, str):
             file_name = ''
-        if not isinstance(user_id, str):
-            user_id = ''
-        return user_name, file_name, user_id
+        return user_name, file_name
+
+    @app.route('/session')
+    def kill_session():
+        print('Kill Session...')
+        context = {
+            'status': 'No result...',
+        }
+        if request.method == "GET":
+            user_id = request.args.get("userid")
+            print(f'UserID: {user_id}')
+            if not isinstance(user_id, str):
+                user_id = ''
+            kill_result = kill_user_session(user_id)
+            print(kill_result)
+            context = {
+                'status': kill_result,
+            }
+        return jsonify(context)
 
     @app.route('/', methods=['GET', 'POST'])
     def index():
@@ -28,7 +45,7 @@ def create_app():
         sort_type = app.config['PATH_NAME_INDEX']
 
         if request.method == "GET":
-            user_name, file_name, user_id = check_get_args(request)
+            user_name, file_name = check_get_args(request)
 
         search_form = SearchForm()
         if search_form.validate_on_submit():

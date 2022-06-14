@@ -2,6 +2,29 @@
 {% block content %}
 
 {% include 'search_form.html' %}
+    <!-- Modal -->
+    <div class="modal fade open-AddBookDialog" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- HEADER-->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">KILL User File Session</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- BODY-->
+                <div class="modal-body">
+                    User ID session:
+                    <input name="hiddenValue" id="id_kill_value" value="" />
+                </div>
+                <!-- FOOTER-->
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+<!--                <button id="id_kill" type="button" class="btn btn-primary" data-bs-dismiss="modal">KILL</button>-->
+                <a id="id_kill" type="button" class="btn btn-primary" data-bs-dismiss="modal">KILL</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <table class="table table-striped table-bordered">
         <tr class="table-info">
@@ -14,7 +37,10 @@
     {% for line in smb_lines %}
         <tr>
             <td><a href="/?username={{ line[9] }}">{{ line[9] }}</a></td>
-            <td>{{ line[0] }}</td>
+            <td>
+                    <!--  <a href="/?userid={{ line[0] }}">{{ line[0] }}</a>-->
+                    <a class="link-danger" data-id="{{ line[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ line[0] }}</a>
+            </td>
             <td>{{ line[6] }}</td>
             <td><a href="/?filename={{ line[7] }}">{{ line[7] }}</a></td>
             <td>{{ line[8] }}</td>
