@@ -39,3 +39,16 @@ systemctl restart nginx
 
 EXAMPLE RUN from command prompt:
 uwsgi --socket 127.0.0.1:5000 --protocol=http -w webapp.uwsgi:app_run
+
+11. Make on target host:
+set SAMBA_STATUS_COMMAND and KILL_USER_COMMAND in config.py like:
+SAMBA_STATUS_COMMAND = 'sudo /usr/local/bin/smbstat.sh'
+KILL_USER_COMMAND = 'sudo /usr/local/bin/killuser.sh'
+
+Copy scripts on target host:
+scp server-script/_killuser.sh remoteuser@targethost:/usr/local/bin/killuser.sh
+scp server-script/_smbstat.sh remoteuser@targethost:/usr/local/bin/smbstat.sh
+
+Make visudo records:
+remoteuser ALL= NOPASSWD: /usr/local/bin/smbstat.sh
+remoteuser ALL= NOPASSWD: /usr/local/bin/killuser.sh
