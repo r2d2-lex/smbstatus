@@ -7,7 +7,6 @@ import webapp.config as config
 def kill_user_session(pid: str):
     try:
         kill_pid_command = f'{config.KILL_USER_COMMAND} {config.KILL_USER_PASSWORD} {str(pid)}'
-        print('kill_pid_command:', kill_pid_command)
         kill_command = prepare_remote_command(kill_pid_command,
                                               config.SSH_PASS_CMD,
                                               config.SSH_PASSWORD,

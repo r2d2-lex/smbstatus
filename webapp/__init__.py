@@ -22,20 +22,14 @@ def create_app():
 
     @app.route('/session')
     def kill_session():
-        print('Kill Session...')
-        context = {
-            'status': 'No result...',
-        }
+        status = 'No result...'
         if request.method == "GET":
             user_id = request.args.get("userid")
-            print(f'UserID: {user_id}')
-            if not isinstance(user_id, str):
-                user_id = ''
-            kill_result = kill_user_session(user_id)
-            print(kill_result)
-            context = {
-                'status': kill_result,
-            }
+            if isinstance(user_id, str):
+                status = kill_user_session(user_id)
+        context = {
+            'status': status,
+        }
         return jsonify(context)
 
     @app.route('/', methods=['GET', 'POST'])

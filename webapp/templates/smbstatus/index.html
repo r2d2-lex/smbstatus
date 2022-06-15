@@ -19,8 +19,7 @@
                 <!-- FOOTER-->
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<!--                <button id="id_kill" type="button" class="btn btn-primary" data-bs-dismiss="modal">KILL</button>-->
-                <a id="id_kill" type="button" class="btn btn-primary" data-bs-dismiss="modal">KILL</a>
+                <a id="id_kill" type="button" class="btn btn-danger" onclick="closeModal();">KILL</a>
                 </div>
             </div>
         </div>
@@ -38,7 +37,6 @@
         <tr>
             <td><a href="/?username={{ line[9] }}">{{ line[9] }}</a></td>
             <td>
-                    <!--  <a href="/?userid={{ line[0] }}">{{ line[0] }}</a>-->
                     <a class="link-danger" data-id="{{ line[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ line[0] }}</a>
             </td>
             <td>{{ line[6] }}</td>
