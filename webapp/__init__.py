@@ -36,7 +36,7 @@ def create_app():
     def fast_index():
         print('Ajax sex...')
         render_form_records = []
-        sort_type = app.config['PATH_NAME_INDEX']
+        sort_type = app.config['SHARE_NAME_INDEX']
 
         if request.method == "GET":
             user_name, file_name = check_get_args(request)
@@ -49,7 +49,7 @@ def create_app():
                 smb_lines = search_records(smb_lines, app.config['PATH_NAME_INDEX'], file_name)
             smb_lines = sort_records(smb_lines, sort_type)
 
-            render_form_records = render_template('smbstatus/ajax.html', smb_lines=smb_lines)
+            render_form_records = render_template('ajax.html', smb_lines=smb_lines)
 
         context = {
             'content': render_form_records,
