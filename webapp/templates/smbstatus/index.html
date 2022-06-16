@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <table class="table table-striped table-bordered">
+    <table id="id_table" class="table table-striped table-bordered">
         <tr class="table-info">
             <th scope="col">Имя пользователя</th>
             <th scope="col">PID (Kill session)</th>
@@ -35,7 +35,7 @@
         </tr>
     {% for line in smb_lines %}
         <tr>
-            <td><a href="/?username={{ line[9] }}">{{ line[9] }}</a></td>
+            <td><a href="#" id="idname{{ line[10] }}" onclick="ajaxFields(this);">{{ line[9] }}</a></td>
             <td>
                     <a href="#" class="link-danger" data-id="{{ line[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ line[0] }}</a>
             </td>

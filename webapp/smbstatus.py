@@ -26,7 +26,7 @@ def smb_status():
 
 def parse_status(uid_users_dict):
     """
-    # '0:Pid 1:Uid 2:DenyMode 3:Access 4:R_W 5:Op_lock 6:SharePath 7:Name 8:Time 9:LoginName'
+    # '0:Pid 1:Uid 2:DenyMode 3:Access 4:R_W 5:Op_lock 6:SharePath 7:Name 8:Time 9:LoginName 10:recordCount'
     :param uid_users_dict:
     :return:
     """
@@ -54,7 +54,8 @@ def parse_status(uid_users_dict):
 
         parsed_line.append(username)
         list_of_user_names.add(username)
-        # print(f'Parsed string: {parsed_line}')
+        parsed_line.append(str(count))
+
         status_records.append(parsed_line)
 
     list_of_user_names = sorted(list_of_user_names)
@@ -69,7 +70,7 @@ def sort_records(records, key):
     return result
 
 
-def search_records(records, key, search_word):
+def search_records(records, key, search_word) -> list:
     result = []
     for record in records:
         try:

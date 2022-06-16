@@ -32,6 +32,30 @@ def create_app():
         }
         return jsonify(context)
 
+    @app.route('/ajax')
+    def fast_index():
+        print('Ajax sex...')
+        render_form_records = []
+        sort_type = app.config['PATH_NAME_INDEX']
+
+        if request.method == "GET":
+            user_name, file_name = check_get_args(request)
+
+            uid_users_dict = make_uid_users_dict()
+            smb_lines, list_of_user_names = parse_status(uid_users_dict)
+            if len(user_name) > 0:
+                smb_lines = search_records(smb_lines, app.config['LOGIN_NAME_INDEX'], user_name)
+            if len(file_name) > 0:
+                smb_lines = search_records(smb_lines, app.config['PATH_NAME_INDEX'], file_name)
+            smb_lines = sort_records(smb_lines, sort_type)
+
+            render_form_records = render_template('smbstatus/ajax.html', smb_lines=smb_lines)
+
+        context = {
+            'content': render_form_records,
+        }
+        return jsonify(context)
+
     @app.route('/', methods=['GET', 'POST'])
     def index():
         user_name = ''
@@ -62,6 +86,7 @@ def create_app():
         smb_lines = sort_records(smb_lines, sort_type)
         return render_template('smbstatus/index.html', page_title=app.config['PAGE_TITLE'], smb_lines=smb_lines,
                                form=search_form, records_count=len(smb_lines), user_names=list_of_user_names)
+
     return app
 
 

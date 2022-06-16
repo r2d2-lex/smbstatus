@@ -8,8 +8,7 @@ $(document).ready(function() {
     })
 });
 
-function closeModal(selectObject)
-{
+function closeModal(selectObject) {
     let userid = $('.modal-body #id_kill_value').val();
     $.ajax({
         type: 'GET',
