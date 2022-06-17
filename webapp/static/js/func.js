@@ -6,34 +6,42 @@ function getUsername(selectObject){
 function cleanFields(selectObject){
   document.querySelector("#username").value = '';
   document.querySelector("#filename").value = '';
+  nameFields(this);
 }
 
 function nameFields(selectObject){
     let id = selectObject.id;
-    let username = document.getElementById(id).innerText;
+    let username = '';
+    let filename = '';
+
+    if (typeof id !== 'undefined'){
+    console.log(id);
+    let idname = 'idname';
+    let idfile = 'idfile';
+    let foundName = id.match(idname);
+    let foundFile = id.match(idfile);
+
+    if (!foundName){
+        username = '';
+    } else {
+        username = document.getElementById(id).innerText;
+    }
+    console.log('username:', username);
+
+    if (!foundFile){
+        filename = '';
+    } else {
+        filename = document.getElementById(id).innerText;
+    }
+    console.log('filename:', filename);
+    }
+
+
     $.ajax({
             type: 'GET',
             url: '/ajax',
             data: {
                 'username': username,
-            },
-            dataType: 'json',
-            success: function(data) {
-                let content = data.content;
-                $('#id_table tr').remove();
-                $('#id_table tbody').append(content);
-            },
-            error: function(data) { console.log('Ошибка выполнения'); },
-    });
-}
-
-function fileFields(selectObject){
-    let id = selectObject.id;
-    let filename = document.getElementById(id).innerText;
-    $.ajax({
-            type: 'GET',
-            url: '/ajax',
-            data: {
                 'filename': filename,
             },
             dataType: 'json',

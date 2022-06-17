@@ -12,7 +12,8 @@
                 <a href="#" class="link-danger" data-id="{{ line[0] }}" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ line[0] }}</a>
         </td>
         <td>{{ line[6] }}</td>
-        <td><a href="#" id="idfile{{ line[10] }}" onclick="fileFields(this);">{{ line[7] }}</a></td>
+<!--        <td><a href="#" id="idfile{{ line[10] }}" onclick="fileFields(this);">{{ line[7] }}</a></td>-->
+        <td><a href="#" id="idfile{{ line[10] }}" onclick="nameFields(this);">{{ line[7] }}</a></td>
         <td>{{ line[8] }}</td>
     </tr>
 {% endfor %}
